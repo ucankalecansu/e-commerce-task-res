@@ -109,3 +109,41 @@
     padding-right: 2rem;
   }
 }
+
+/* Sayfalama container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Sayfalama butonları */
+.pagination button {
+  background-color: #ccc;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+.pagination button.active {
+  background-color: #00eaff;
+  color: white;
+}
+
+.pagination button:hover:not(.active) {
+  background-color: #ddd;
+}
+
+@media screen and (max-width: 600px) {
+  .pagination {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .pagination button {
+    margin: 0 5px;
+  }
+}
