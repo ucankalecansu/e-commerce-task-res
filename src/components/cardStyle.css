@@ -45,15 +45,32 @@
   border-radius: 5px;
 }
 
-.cardTitle {
+.cardContent {
   display: flex;
+  flex-direction: column;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cardTitle {
   font-weight: 600;
   color: var(--textColor);
+}
+
+.desc {
+  font-weight: 600;
+  color: var(--secondaryColor);
 }
 
 .price {
   font-weight: 600;
   color: var(--secondaryColor);
+  font-size: 20px;
+  align-self: center;
 }
 
 @media screen and (min-width: 600px) {
@@ -79,6 +96,9 @@
   }
 
   .singleCard .price {
+    font-size: 17px;
+  }
+  .singleCard .desc {
     font-size: 17px;
   }
 }

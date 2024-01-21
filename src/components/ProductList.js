@@ -15,20 +15,39 @@ const ProductList = ({ products }) => {
         <div key={product.id} className="product-card">
           <div key={product.id} className="singleCard">
             <div className="imgDiv">
-              <a
+              {/* <a
                 href={product.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                <img src={product.image} alt={product.title} />
-              </a>
+              > */}
+              <img src={product.image} alt={product.title} />
+              {/* </a> */}
             </div>
 
-            <div className="cardTitle">
-              <h3>{product.title}</h3>
+            <div className="textContainer">
+              <div className="cardTitle">
+                <h3>{product.name}</h3>
+              </div>
+              <div className="price">{product.price}</div>
+            </div>
+            <div className="desc">
+              {product.description.length > 150
+                ? `${product.description.slice(0, 150)} ...`
+                : product.description}
             </div>
 
-            <div className="price">{product.price}</div>
+            <div
+              style={{
+                display: "flex",
+                alignContent: "center",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <button style={{ width: "90%", padding: ".3rem" }}>
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       ))}
