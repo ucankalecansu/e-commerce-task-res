@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./cardStyle.css";
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, addToCart }) => {
   const [filter, setFilter] = useState("");
 
   const filteredProducts = filter
@@ -19,6 +19,16 @@ const ProductList = ({ products }) => {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const [addedProducts, setAddedProducts] = useState([]);
+
+  const handleAddToCart = (product) => {
+    // Eğer ürün daha önce eklenmemişse addToCart fonksiyonunu çağır
+    if (!addedProducts.includes(product.id)) {
+      addToCart(product);
+      setAddedProducts([...addedProducts, product.id]);
+    }
+  };
 
   return (
     <div>
@@ -50,7 +60,10 @@ const ProductList = ({ products }) => {
                   width: "100%",
                 }}
               >
-                <button style={{ width: "90%", padding: ".3rem" }}>
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  style={{ width: "90%", padding: ".3rem" }}
+                >
                   Add to Cart
                 </button>
               </div>
