@@ -7,13 +7,15 @@ import axios from "axios";
 function App() {
   const [productData, setProductData] = useState([]);
   const [brandsData, setBrandsData] = useState([]);
+  const [modelsData, setModelsData] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedModels, setSelectedModels] = useState([]);
   const [selectedSortKey, setSelectedSortKey] = useState(null);
 
   const filteredData = useMemo(() => {
     let sortedData;
     if (selectedSortKey === "newToOld" || selectedSortKey === "oldToNew") {
-      //Tarihe göre Sıralama
+      // date
       sortedData = productData.slice().sort((a, b) => {
         if (selectedSortKey === "newToOld") {
           return new Date(b.createdAt) - new Date(a.createdAt);
@@ -21,23 +23,29 @@ function App() {
           return new Date(a.createdAt) - new Date(b.createdAt);
         }
       });
+      // price
     } else if (selectedSortKey === "priceHightToLow") {
-      //Ücrete göre Sıralama
       sortedData = productData.slice().sort((a, b) => b.price - a.price);
     } else if (selectedSortKey === "priceLowToHigh") {
       sortedData = productData.slice().sort((a, b) => a.price - b.price);
     } else {
+      // orjinal
       sortedData = productData.slice();
     }
-    //Model Filter
+    // brand filter
     let filteredByBrand =
       selectedBrands.length > 0
         ? sortedData.filter((item) => selectedBrands.includes(item.brand))
         : sortedData;
 
-    //Orjinal dataya geri dönüş
-    return selectedBrands.length > 0 ? filteredByBrand : sortedData;
-  }, [selectedBrands, productData, selectedSortKey]);
+    // model filter
+    let filteredByModel =
+      selectedModels.length > 0
+        ? filteredByBrand.filter((item) => selectedModels.includes(item.model))
+        : filteredByBrand;
+
+    return selectedModels.length > 0 ? filteredByModel : filteredByBrand;
+  }, [selectedBrands, selectedModels, productData, selectedSortKey]);
 
   useEffect(() => {
     setDisplayedData(filteredData);
@@ -58,6 +66,12 @@ function App() {
           (brand, index, array) => array.indexOf(brand) === index
         );
         setBrandsData(uniqueBrandsArray);
+
+        const modelArray = res.data.map((i) => i.model);
+        const uniqueModelsArray = modelArray.filter(
+          (brand, index, array) => array.indexOf(brand) === index
+        );
+        setModelsData(uniqueModelsArray);
       })
       .catch(() => {});
   };
@@ -71,6 +85,9 @@ function App() {
           setSelectedBrands={setSelectedBrands}
           selectedSortKey={selectedSortKey}
           setSelectedSortKey={setSelectedSortKey}
+          modelsData={modelsData}
+          selectedModels={selectedModels}
+          setSelectedModels={setSelectedModels}
         />
       </div>
       <div className="column center">

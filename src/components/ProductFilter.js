@@ -6,14 +6,10 @@ const ProductFilter = ({
   setSelectedBrands,
   selectedSortKey,
   setSelectedSortKey,
+  modelsData,
+  selectedModels,
+  setSelectedModels,
 }) => {
-  //   const [filter, setLocalFilter] = useState("");
-
-  //   const handleFilterChange = (filterValue) => {
-  //     setLocalFilter(filterValue);
-  //     setFilter(filterValue);
-  //   };
-
   const handleBrandToggle = (brand) => {
     if (selectedBrands.includes(brand)) {
       setSelectedBrands(
@@ -21,6 +17,16 @@ const ProductFilter = ({
       );
     } else {
       setSelectedBrands([...selectedBrands, brand]);
+    }
+  };
+
+  const handleModelToggle = (model) => {
+    if (selectedModels.includes(model)) {
+      setSelectedModels(
+        selectedModels.filter((selectedModel) => selectedModel !== model)
+      );
+    } else {
+      setSelectedModels([...selectedModels, model]);
     }
   };
 
@@ -73,7 +79,23 @@ const ProductFilter = ({
         </div>
       </div>
 
-      <div className="card">Model</div>
+      <div>
+        <div>Models</div>
+        <div className="card">
+          {modelsData.map((model) => (
+            <div key={model} className="brand-card">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedModels.includes(model)}
+                  onChange={() => handleModelToggle(model)}
+                />
+                {model}
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
