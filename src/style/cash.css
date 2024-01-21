@@ -1,0 +1,42 @@
+/* Regular styles for larger screens */
+.cashCard {
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.cashContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1rem;
+  border-bottom: 1px solid #ddd;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.totalPriceTitle {
+  font-weight: 400;
+}
+.totalPrice {
+  font-weight: 600;
+  color: blue;
+}
+.margin1rem {
+  margin: 1rem;
+}
+.w10 {
+  width: 10%;
+}
+.w20 {
+  width: 20%;
+}
+.counter {
+  display: flex;
+  align-items: center;
+}

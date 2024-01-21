@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
+import "../style/cash.css";
 
 const Cash = ({
   cartItems,
@@ -9,40 +10,22 @@ const Cash = ({
   removeItem,
 }) => {
   return (
-    <div>
-      <h2>Shopping Cart</h2>
-      <div style={{ margin: "0.1rem" }}>
+    <>
+      <div className="cashCard margin1rem">
         {cartItems.map((item) => (
-          <div
-            style={{ borderBottom: "1px solid #ddd", padding: "0.1rem" }}
-            key={item.id}
-          >
-            <div
-              style={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div style={{ width: "20%" }}>{item.name}</div>
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "10%",
-                }}
-              >
+          <div key={item.id}>
+            <div className="cashContainer">
+              <div className="w20">{item.name}</div>
+              <div className="counter w10">
                 <button onClick={() => decreaseQuantity(item)}>-</button>
                 <span style={{ margin: "0 0.5rem" }}>{item.quantity}</span>
                 <button onClick={() => increaseQuantity(item)}>+</button>
               </div>
 
-              <div style={{ maxWidth: "20px", width: "20%" }}>
+              <div className="w20">
                 ${(item.price * item.quantity).toFixed(2)}
               </div>
-              <div style={{ width: "10%" }}>
+              <div className="w10">
                 {item.quantity === 1 && (
                   <button onClick={() => removeItem(item)}>
                     <FaTrash />
@@ -53,8 +36,15 @@ const Cash = ({
           </div>
         ))}
       </div>
-      <div>Total: ${getTotalPrice().toFixed(2)}</div>
-    </div>
+      <div className="cashCard row margin1rem">
+        <div className="totalPriceTitle">
+          <div>Total Price:</div>
+        </div>
+        <div className="totalPrice">
+          <div>${getTotalPrice().toFixed(2)}</div>
+        </div>
+      </div>
+    </>
   );
 };
 
