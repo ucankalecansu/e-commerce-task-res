@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: white; /* Sayfa arkaplan rengi */
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 2000px; /* Sayfa genişliği sınırlaması */
+  margin: 0 auto; /* Sayfayı yatayda ortala */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.column {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+.left,
+.right {
+  flex-basis: 20%; /* %20 genişlik */
+  background-color: white; /* Sağ ve sol sütun arkaplan rengi */
+}
+
+.center {
+  flex-basis: 60%; /* %60 genişlik */
+  background-color: red; /* Orta sütun arkaplan rengi */
+}
+
+.sidebar {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  flex-basis: calc(25% - 20px);
+  min-width: 45px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .left,
+  .right,
+  .center {
+    flex-basis: 100%; /* Mobilde sütunlar dikey olacak */
+  }
+
+  .product-card {
+    flex-basis: calc(50% - 20px); /* Telefon boyutunda 2'li sıralama */
+  }
+
+  .card {
+    flex-basis: 100%; /* Kartlar dikey olacak */
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .product-card {
+    flex-basis: 100%; /* Daha küçük boyutlarda tek sıralama */
   }
 }
