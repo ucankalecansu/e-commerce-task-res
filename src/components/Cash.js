@@ -16,14 +16,14 @@ const Cash = ({
           <div key={item.id}>
             <div className="cashContainer">
               <div className="w20">{item.name}</div>
-              <div className="counter w10">
+              <div className="counter w20">
                 <button onClick={() => decreaseQuantity(item)}>-</button>
                 <span style={{ margin: "0 0.5rem" }}>{item.quantity}</span>
                 <button onClick={() => increaseQuantity(item)}>+</button>
               </div>
 
               <div className="w20">
-                ${(item.price * item.quantity).toFixed(2)}
+                ₺{(item.price * item.quantity).toFixed(2)}
               </div>
               <div className="w10">
                 {item.quantity === 1 && (
@@ -41,7 +41,7 @@ const Cash = ({
           <div>Total Price:</div>
         </div>
         <div className="totalPrice">
-          <div>${getTotalPrice().toFixed(2)}</div>
+          <div>₺{getTotalPrice().toFixed(2)}</div>
         </div>
       </div>
     </>

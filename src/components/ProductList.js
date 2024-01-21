@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./cardStyle.css";
+import "../style/cardStyle.css";
 
 const ProductList = ({ products, addToCart }) => {
   const [filter, setFilter] = useState("");
@@ -23,7 +23,6 @@ const ProductList = ({ products, addToCart }) => {
   const [addedProducts, setAddedProducts] = useState([]);
 
   const handleAddToCart = (product) => {
-    // Eğer ürün daha önce eklenmemişse addToCart fonksiyonunu çağır
     if (!addedProducts.includes(product.id)) {
       addToCart(product);
       setAddedProducts([...addedProducts, product.id]);

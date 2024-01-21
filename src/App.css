@@ -6,14 +6,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
   justify-content: center;
-  background-color: white; /* Sayfa arkaplan rengi */
+  background-color: white;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  max-width: 2000px; /* Sayfa genişliği sınırlaması */
-  margin: 0 auto; /* Sayfayı yatayda ortala */
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 .column {
@@ -23,13 +23,13 @@ body {
 
 .left,
 .right {
-  flex-basis: 20%; /* %20 genişlik */
-  background-color: white; /* Sağ ve sol sütun arkaplan rengi */
+  flex-basis: 20%;
+  background-color: white;
 }
 
 .center {
-  flex-basis: 60%; /* %60 genişlik */
-  background-color: red; /* Orta sütun arkaplan rengi */
+  flex-basis: 60%;
+  background-color: white;
 }
 
 .sidebar {
@@ -68,15 +68,14 @@ body {
   .left,
   .right,
   .center {
-    flex-basis: 100%; /* Mobilde sütunlar dikey olacak */
+    flex-basis: 100%;
   }
 
   .product-card {
-    flex-basis: calc(50% - 20px); /* Telefon boyutunda 2'li sıralama */
+    flex-basis: calc(50% - 20px);
   }
 
   .card {
-    flex-basis: 100%; /* Kartlar dikey olacak */
     margin-right: 0;
     margin-bottom: 10px;
   }
@@ -84,6 +83,6 @@ body {
 
 @media screen and (max-width: 480px) {
   .product-card {
-    flex-basis: 100%; /* Daha küçük boyutlarda tek sıralama */
+    flex-basis: 100%;
   }
 }

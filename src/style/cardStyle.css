@@ -110,14 +110,12 @@
   }
 }
 
-/* Sayfalama container */
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-/* Sayfalama butonları */
 .pagination button {
   background-color: #ccc;
   border: 1px solid #aaa;
