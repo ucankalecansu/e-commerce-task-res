@@ -14,6 +14,7 @@ function App() {
   const [selectedModels, setSelectedModels] = useState([]);
   const [selectedSortKey, setSelectedSortKey] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const filteredData = useMemo(() => {
     let sortedData;
@@ -129,9 +130,22 @@ function App() {
     setCartItems(updatedCart);
   };
 
+  const handleSearchInputChange = (e) => {
+    const inputValue = e.target.value;
+    setSearchInput(inputValue);
+    const filteredData = productData.filter((product) =>
+      product.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setDisplayedData(filteredData);
+  };
+
   return (
     <>
-      <Header totalPrice={getTotalPrice().toFixed(2)} />
+      <Header
+        totalPrice={getTotalPrice().toFixed(2)}
+        searchInput={searchInput}
+        handleSearchInputChange={handleSearchInputChange}
+      />
       <div className="container">
         <div className="column left">
           <ProductFilter

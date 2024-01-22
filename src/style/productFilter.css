@@ -1,0 +1,11 @@
+.seacrhInput {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.search {
+  flex: 1;
+  text-align: start;
+  margin-left: 2%;
+}
