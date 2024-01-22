@@ -1,0 +1,14 @@
+.w90 {
+  width: 90%;
+}
+
+.btnContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.padding03rem {
+  padding: 0.3rem;
+}

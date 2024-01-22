@@ -3,7 +3,7 @@ import ProductFilter from "./components/ProductFilter";
 import ProductList from "./components/ProductList";
 import "./App.css";
 import axios from "axios";
-import Cash from "./components/Cash";
+import Basket from "./components/Basket";
 import Header from "./components/Header";
 
 function App() {
@@ -37,16 +37,10 @@ function App() {
       sortedData = productData.slice();
     }
     // brand filter
-    let filteredByBrand =
-      selectedBrands.length > 0
-        ? sortedData.filter((item) => selectedBrands.includes(item.brand))
-        : sortedData;
+    let filteredByBrand = selectedBrands.length > 0 ? sortedData.filter((item) => selectedBrands.includes(item.brand)) : sortedData;
 
     // model filter
-    let filteredByModel =
-      selectedModels.length > 0
-        ? filteredByBrand.filter((item) => selectedModels.includes(item.model))
-        : filteredByBrand;
+    let filteredByModel = selectedModels.length > 0 ? filteredByBrand.filter((item) => selectedModels.includes(item.model)) : filteredByBrand;
 
     return selectedModels.length > 0 ? filteredByModel : filteredByBrand;
   }, [selectedBrands, selectedModels, productData, selectedSortKey]);
@@ -66,15 +60,11 @@ function App() {
       .then((res) => {
         setProductData(res.data);
         const brandArray = res.data.map((i) => i.brand);
-        const uniqueBrandsArray = brandArray.filter(
-          (brand, index, array) => array.indexOf(brand) === index
-        );
+        const uniqueBrandsArray = brandArray.filter((brand, index, array) => array.indexOf(brand) === index);
         setBrandsData(uniqueBrandsArray);
 
         const modelArray = res.data.map((i) => i.model);
-        const uniqueModelsArray = modelArray.filter(
-          (brand, index, array) => array.indexOf(brand) === index
-        );
+        const uniqueModelsArray = modelArray.filter((brand, index, array) => array.indexOf(brand) === index);
         setModelsData(uniqueModelsArray);
       })
       .catch(() => {});
@@ -84,45 +74,24 @@ function App() {
     const existingItem = cartItems.find((item) => item.id === product.id);
 
     if (existingItem) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === existingItem.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
+      setCartItems(cartItems.map((item) => (item.id === existingItem.id ? { ...item, quantity: item.quantity + 1 } : item)));
     } else {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
   };
 
   const increaseQuantity = (item) => {
-    setCartItems(
-      cartItems.map((cartItem) =>
-        cartItem.id === item.id
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      )
-    );
+    setCartItems(cartItems.map((cartItem) => (cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem)));
   };
 
   const decreaseQuantity = (item) => {
     if (item.quantity > 1) {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
+      setCartItems(cartItems.map((cartItem) => (cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem)));
     }
   };
 
   const getTotalPrice = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   const removeItem = (item) => {
@@ -133,19 +102,13 @@ function App() {
   const handleSearchInputChange = (e) => {
     const inputValue = e.target.value;
     setSearchInput(inputValue);
-    const filteredData = productData.filter((product) =>
-      product.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
+    const filteredData = productData.filter((product) => product.name.toLowerCase().includes(inputValue.toLowerCase()));
     setDisplayedData(filteredData);
   };
 
   return (
     <>
-      <Header
-        totalPrice={getTotalPrice().toFixed(2)}
-        searchInput={searchInput}
-        handleSearchInputChange={handleSearchInputChange}
-      />
+      <Header totalPrice={getTotalPrice().toFixed(2)} searchInput={searchInput} handleSearchInputChange={handleSearchInputChange} />
       <div className="container">
         <div className="column left">
           <ProductFilter
@@ -163,13 +126,7 @@ function App() {
           <ProductList products={displayedData} addToCart={addToCart} />
         </div>
         <div className="column right">
-          <Cash
-            cartItems={cartItems}
-            increaseQuantity={increaseQuantity}
-            decreaseQuantity={decreaseQuantity}
-            getTotalPrice={getTotalPrice}
-            removeItem={removeItem}
-          />
+          <Basket cartItems={cartItems} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} getTotalPrice={getTotalPrice} removeItem={removeItem} />
         </div>
       </div>
     </>

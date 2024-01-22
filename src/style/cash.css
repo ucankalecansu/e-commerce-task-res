@@ -39,3 +39,6 @@
   display: flex;
   align-items: center;
 }
+.margin05rem {
+  margin: 0 0.5rem;
+}

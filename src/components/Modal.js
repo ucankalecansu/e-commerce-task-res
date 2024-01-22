@@ -1,6 +1,7 @@
 import React from "react";
-import "../style/modal.css";
+import "../style/Modal.css";
 import { CiClock1 } from "react-icons/ci";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 const Modal = ({ onClose, isOpen, data }) => {
   if (!isOpen) return null;
@@ -8,7 +9,7 @@ const Modal = ({ onClose, isOpen, data }) => {
     <div className="modal-overlay">
       <div className="modal">
         <span className="close" onClick={onClose}>
-          &times;
+          <IoCloseCircleOutline />
         </span>
         <div className="modal-content">
           <div key={data.id} className="modalSingleCard">
@@ -17,9 +18,7 @@ const Modal = ({ onClose, isOpen, data }) => {
             </div>
             <div className="flex row">
               <CiClock1 className="clock-icon cardTitle" />
-              <div className="cardTitle">
-                {new Date(data.createdAt).toLocaleString()}
-              </div>
+              <div className="cardTitle">{new Date(data.createdAt).toLocaleString()}</div>
             </div>
             <div className="textContainer">
               <div className="cardTitle">

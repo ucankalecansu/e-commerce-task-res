@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/header.css";
+import "../style/Header.css";
 import { CiUser, CiWallet } from "react-icons/ci";
 
 const Header = ({ totalPrice, searchInput, handleSearchInputChange }) => {
@@ -8,13 +8,7 @@ const Header = ({ totalPrice, searchInput, handleSearchInputChange }) => {
       <div class="header">
         <div class="eteration-logo">Eteration</div>
         <div class="search-bar">
-          <input
-            className="headerInput"
-            type="text"
-            placeholder="Ara..."
-            value={searchInput}
-            onChange={handleSearchInputChange}
-          />
+          <input className="headerInput" type="text" placeholder="Ara..." value={searchInput} onChange={handleSearchInputChange} />
         </div>
         <div class="user-info">
           <CiWallet className="user-icon" />

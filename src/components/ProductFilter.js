@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../style/productFilter.css";
+import "../style/ProductFilter.css";
 
 const sortData = [
   { id: 1, key: "oldToNew", title: "Old to new" },
@@ -8,16 +8,7 @@ const sortData = [
   { id: 2, key: "priceLowToHigh", title: "Price low to high" },
 ];
 
-const ProductFilter = ({
-  brandsData,
-  selectedBrands,
-  setSelectedBrands,
-  selectedSortKey,
-  setSelectedSortKey,
-  modelsData,
-  selectedModels,
-  setSelectedModels,
-}) => {
+const ProductFilter = ({ brandsData, selectedBrands, setSelectedBrands, selectedSortKey, setSelectedSortKey, modelsData, selectedModels, setSelectedModels }) => {
   const [searchModelInput, setSearchModelInput] = useState("");
   const [filteredModels, setFilteredModels] = useState(modelsData);
 
@@ -29,9 +20,7 @@ const ProductFilter = ({
     setSearchBrandInput(inputValue);
 
     if (inputValue.length >= 3) {
-      const filteredData = brandsData.filter((brand) =>
-        brand.toLowerCase().includes(inputValue.toLowerCase())
-      );
+      const filteredData = brandsData.filter((brand) => brand.toLowerCase().includes(inputValue.toLowerCase()));
       setFilteredBrands(filteredData);
     } else {
       setFilteredBrands(brandsData);
@@ -42,9 +31,7 @@ const ProductFilter = ({
     const inputValue = e.target.value;
     setSearchModelInput(inputValue);
     if (inputValue.length >= 3) {
-      const filteredData = modelsData.filter((model) =>
-        model.toLowerCase().includes(inputValue.toLowerCase())
-      );
+      const filteredData = modelsData.filter((model) => model.toLowerCase().includes(inputValue.toLowerCase()));
       setFilteredModels(filteredData);
     } else {
       setFilteredModels(modelsData);
@@ -62,9 +49,7 @@ const ProductFilter = ({
 
   const handleBrandToggle = (brand) => {
     if (selectedBrands.includes(brand)) {
-      setSelectedBrands(
-        selectedBrands.filter((selectedBrand) => selectedBrand !== brand)
-      );
+      setSelectedBrands(selectedBrands.filter((selectedBrand) => selectedBrand !== brand));
     } else {
       setSelectedBrands([...selectedBrands, brand]);
     }
@@ -72,9 +57,7 @@ const ProductFilter = ({
 
   const handleModelToggle = (model) => {
     if (selectedModels.includes(model)) {
-      setSelectedModels(
-        selectedModels.filter((selectedModel) => selectedModel !== model)
-      );
+      setSelectedModels(selectedModels.filter((selectedModel) => selectedModel !== model));
     } else {
       setSelectedModels([...selectedModels, model]);
     }
@@ -83,6 +66,7 @@ const ProductFilter = ({
   const handleSortToggle = (sort) => {
     setSelectedSortKey(sort.key === selectedSortKey ? null : sort.key);
   };
+
   return (
     <div className="sidebar">
       <div>
@@ -91,11 +75,7 @@ const ProductFilter = ({
           {sortData.map((sort) => (
             <div key={sort} className="brand-card">
               <label>
-                <input
-                  type="checkbox"
-                  checked={sort.key === selectedSortKey}
-                  onChange={() => handleSortToggle(sort)}
-                />
+                <input type="checkbox" checked={sort.key === selectedSortKey} onChange={() => handleSortToggle(sort)} />
                 {sort.title}
               </label>
             </div>
@@ -107,22 +87,12 @@ const ProductFilter = ({
         <div>Brands</div>
         <div className="card">
           <div class="search">
-            <input
-              className="searchInput"
-              type="text"
-              placeholder="Ara..."
-              value={searchBrandInput}
-              onChange={handleSearchBrandInputChange}
-            />
+            <input className="searchInput" type="text" placeholder="Ara..." value={searchBrandInput} onChange={handleSearchBrandInputChange} />
           </div>
           {filteredBrands.map((brand) => (
             <div key={brand} className="brand-card">
               <label>
-                <input
-                  type="checkbox"
-                  checked={selectedBrands.includes(brand)}
-                  onChange={() => handleBrandToggle(brand)}
-                />
+                <input type="checkbox" checked={selectedBrands.includes(brand)} onChange={() => handleBrandToggle(brand)} />
                 {brand}
               </label>
             </div>
@@ -134,22 +104,12 @@ const ProductFilter = ({
         <div>Models</div>
         <div className="card">
           <div class="search">
-            <input
-              className="searchInput"
-              type="text"
-              placeholder="Ara..."
-              value={searchModelInput}
-              onChange={handleSearchInputChange}
-            />
+            <input className="searchInput" type="text" placeholder="Ara..." value={searchModelInput} onChange={handleSearchInputChange} />
           </div>
           {filteredModels.map((model) => (
             <div key={model} className="brand-card">
               <label>
-                <input
-                  type="checkbox"
-                  checked={selectedModels.includes(model)}
-                  onChange={() => handleModelToggle(model)}
-                />
+                <input type="checkbox" checked={selectedModels.includes(model)} onChange={() => handleModelToggle(model)} />
                 {model}
               </label>
             </div>

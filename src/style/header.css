@@ -2,7 +2,7 @@
   display: flex;
   align-self: center;
   justify-content: center;
-  max-width: 2000px;
+  max-width: 1800px;
 }
 
 .header {
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   background-color: blue;
-  padding: 1rem 10%;
+  padding: 1rem 4%;
   width: 100%;
   color: white;
   box-sizing: border-box;

@@ -1,14 +1,8 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
-import "../style/cash.css";
+import "../style/Cash.css";
 
-const Cash = ({
-  cartItems,
-  increaseQuantity,
-  decreaseQuantity,
-  getTotalPrice,
-  removeItem,
-}) => {
+const Basket = ({ cartItems, increaseQuantity, decreaseQuantity, getTotalPrice, removeItem }) => {
   return (
     <>
       <div className="cashCard margin1rem">
@@ -18,13 +12,11 @@ const Cash = ({
               <div className="w20">{item.name}</div>
               <div className="counter w20">
                 <button onClick={() => decreaseQuantity(item)}>-</button>
-                <span style={{ margin: "0 0.5rem" }}>{item.quantity}</span>
+                <span className="margin05rem">{item.quantity}</span>
                 <button onClick={() => increaseQuantity(item)}>+</button>
               </div>
 
-              <div className="w20">
-                ₺{(item.price * item.quantity).toFixed(2)}
-              </div>
+              <div className="w20">₺{(item.price * item.quantity).toFixed(2)}</div>
               <div className="w10">
                 {item.quantity === 1 && (
                   <button onClick={() => removeItem(item)}>
@@ -38,7 +30,7 @@ const Cash = ({
       </div>
       <div className="cashCard row margin1rem">
         <div className="totalPriceTitle">
-          <div>Total Price:</div>
+          <text>Total Price:</text>
         </div>
         <div className="totalPrice">
           <div>₺{getTotalPrice().toFixed(2)}</div>
@@ -48,4 +40,4 @@ const Cash = ({
   );
 };
 
-export default Cash;
+export default Basket;
