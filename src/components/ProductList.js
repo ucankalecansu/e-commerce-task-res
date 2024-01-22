@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "../style/cardStyle.css";
+import Modal from "./Modal";
 
 const ProductList = ({ products, addToCart }) => {
   const [filter, setFilter] = useState("");
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    clickedProduct: null,
+  });
 
   const filteredProducts = filter
     ? products.filter((product) => product.name.includes(filter))
@@ -29,11 +34,34 @@ const ProductList = ({ products, addToCart }) => {
     }
   };
 
+  const openModal = (product) => {
+    setModalState({
+      isOpen: true,
+      clickedProduct: product,
+    });
+  };
+
+  const closeModal = () => {
+    setModalState({
+      isOpen: false,
+      clickedProduct: null,
+    });
+  };
   return (
     <div>
+      <Modal
+        onClose={closeModal}
+        isOpen={modalState.isOpen}
+        data={modalState.clickedProduct}
+      />
+
       <div className="product-list">
         {currentItems.map((product) => (
-          <div key={product.id} className="product-card">
+          <div
+            onClick={() => openModal(product)}
+            key={product.id}
+            className="product-card"
+          >
             <div key={product.id} className="singleCard">
               <div className="imgDiv">
                 <img src={product.image} alt={product.title} />
